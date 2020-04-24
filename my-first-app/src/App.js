@@ -3,8 +3,10 @@ import './App.css';
 import Recettes from './components/Recette/Recettes';
 import AddRecette from './components/Recette/AddRecette';
 import Footer from './components/matserbase/Footer';
+import Jumbotron from './components/Home/Jumbotron';
 import NavBar from './components/matserbase/NavBar';
-import {Row, Col, Container} from 'react-bootstrap';
+import {Col, Container} from 'react-bootstrap';
+import { Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 
 class App extends React.Component{
   
@@ -43,7 +45,7 @@ class App extends React.Component{
         recettes
     });
   }
-  
+
   // (i) is received from Recettes.js
   pressDelete = (i) => {
     let recettes = this.state.recettes.filter((u,index)=>{
@@ -61,17 +63,29 @@ class App extends React.Component{
 
 render(){
   return (
-    <>
+    <Router>
       <NavBar/>
       <Container>
-        <Row>
-          <Col lg={12} className={"margin"}><AddRecette addRecette={this.addRecette}/></Col>
-          <Col lg={12} className={"margin"}><Recettes allRecettes={this.state.recettes} pressEditBtn={this.pressEditBtn} updateRecette={this.updateRecette} pressDelete={this.pressDelete}/>
-          </Col>
-        </Row>
+        <Switch>
+        <Route exact path='/home'>
+            <Col lg={12} className={"margin"}>
+              <Jumbotron/>
+            </Col>
+          </Route>
+          <Route exact path='/add'>
+            <Col lg={12} className={"margin"}>
+              <AddRecette addRecette={this.addRecette}/>
+            </Col>
+          </Route>
+          <Route exact path='/list'>
+            <Col lg={12} className={"margin"}>
+              <Recettes allRecettes={this.state.recettes} pressEditBtn={this.pressEditBtn} updateRecette={this.updateRecette} pressDelete={this.pressDelete}/>
+            </Col>
+          </Route>
+        </Switch>
       </Container>
       <Footer/>
-    </>
+    </Router>
     );
 }
 }
