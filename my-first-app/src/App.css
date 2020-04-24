@@ -1,0 +1,12 @@
+.margin{
+    margin: 3% 0;
+}
+td:nth-child(1), td:nth-child(3){
+    width: 20%;
+}
+td:nth-child(2){
+    width: 60%;
+}
+.btnEdit{
+    margin: 0 10%;
+}
