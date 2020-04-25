@@ -67,7 +67,7 @@ render(){
       <NavBar/>
       <Container>
         <Switch>
-        <Route exact path='/home'>
+        <Route exact path='/'>
             <Col lg={12} className={"margin"}>
               <Jumbotron/>
             </Col>
